@@ -2,13 +2,16 @@ package taco.food.protocol;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import taco.food.model.Taco;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-public class Order {
+public class OrderRequest {
 	@NotBlank(message = "Name is required")
 	private String deliveryName;
 	@NotBlank(message = "Street is required")
@@ -25,4 +28,10 @@ public class Order {
 	private String ccExpiration;
 	@Digits(integer = 3, fraction = 0, message = "Name is required")
 	private String ccCVV;
+
+	private List<Taco> tacos = new ArrayList<>();
+
+	public void addDesign(Taco taco) {
+		tacos.add(taco);
+	}
 }
